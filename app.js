@@ -17,7 +17,6 @@ var vm = new Vue ({
   el:'#app',
   data: {
     items : items,
-    canBuy: false
   },
   filters: {
     numberWithDelimiter : function(value) {
@@ -37,6 +36,15 @@ var vm = new Vue ({
     },
     totalPriceWithTax: function() {
       return Math.floor(this.totalPrice * 1.1)
+    },
+    canBuy: function() {
+      return this.totalPrice >= 1000
+    },
+    errorMsgStyle: function(){
+      return {
+        border : this.canBuy ? '': '1px solid red',
+        color : this.canBuy ? '': 'red'
+      }
     }
   }
 })

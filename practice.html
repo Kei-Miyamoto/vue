@@ -12,11 +12,26 @@
 <body>
   
   <div id="app">
-    <p>{{ items[0].name }}:{{ items[0].price }} * {{ items[0].quantity }}</p>
-    <p>小計 {{ totalPrice | numberWithDelimiter }}</p>
-    <p>合計 {{ totalPriceWithTax | numberWithDelimiter }}</p>
-    <button id="btn" v-bind:disabled="!canBuy">購入</button>
+    <ul>
+      <li v-for="item in items" :key="item.name">
+        {{ item.name }} の個数 : <input type="number" v-on:input="item.quantity = $event.target.value" :value="item.quantity" min="0">
+      </li>
+    </ul>
+    <hr>
+    
+    <div :style="errorMsgStyle">
+      <ul>
+        <li v-for="item in items" :key="item.name">
+          {{ item.name }} : {{ item.price }} * {{ item.quantity }} = {{ item.price * item.quantity }}
+        </li>
+      </ul>
+      <p>{{ items[0].name }}:{{ items[0].price }} * {{ items[0].quantity }}</p>
+      <p>小計 {{ totalPrice | numberWithDelimiter }}</p>
+      <p>合計 {{ totalPriceWithTax | numberWithDelimiter }}</p>
+      <p v-show="!canBuy">{{ 1000 | numberWithDelimiter }}円以上からご購入頂けます</p>
+    </div>
   </div>
+
   <script src="app.js"></script>
 
   </body>
