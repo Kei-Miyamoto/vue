@@ -26,6 +26,18 @@ var vm = new Vue ({
       }
       return value.toString().replace(/(\d)(?=(\d{3})+$)/g,'$1,')
     }
+  },
+  computed: {
+    totalPrice: function() {
+      if(this.items[0].quantity !== 0) {
+        return this.items[0].price * this.items[0].quantity
+      }else {
+        return 0;
+      }
+    },
+    totalPriceWithTax: function() {
+      return Math.floor(this.totalPrice * 1.1)
+    }
   }
 })
 
