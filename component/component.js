@@ -6,6 +6,14 @@ Vue.component('fruits-list-title',{
 Vue.component('fruits-list-description',{
   template:'<p>季節の代表的なフルーツの一覧です</p>',
 })
+Vue.component('simpla-counter', {
+  template:'<h1>フルーツ一覧</h1>',
+  data: function() {
+    return {
+      fruits:['りんご','みかん']
+    }
+  }
+})
 Vue.component('fruits-list-table',{
   template:`
   <table>
