@@ -26,6 +26,15 @@ var vm = new Vue ({
       return value.toString().replace(/(\d)(?=(\d{3})+$)/g,'$1,')
     }
   },
+  methods: {
+    doBuy: function() {
+      alert(this.totalPriceWithTax + '円のお買い上げ！')
+      this.items.forEach(function(item) {
+        item.quantity = 0
+      })
+    },
+    
+  },
   computed: {
     totalPrice: function() {
       if(this.items[0].quantity !== 0) {
@@ -42,9 +51,9 @@ var vm = new Vue ({
     },
     errorMsgStyle: function(){
       return {
-        border : this.canBuy ? '': '1px solid red',
-        color : this.canBuy ? '': 'red'
+        border : this.canBuy ? '1px solid blue': '1px solid red',
+        color : this.canBuy ? 'black': 'red'
       }
     }
-  }
+  },
 })
