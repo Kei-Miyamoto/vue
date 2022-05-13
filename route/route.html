@@ -12,10 +12,25 @@
 <body>
 
   <div id="app">
-    <router-link to="/top">Top page</router-link>
-    <router-link to="/users">Users page</router-link>
+    <nav>
+      <router-link to="/top">Top page</router-link>
+      <router-link to="/users">Users page</router-link>
+    </nav>
+    <router-link :to="{ name:'user', params: {userId: 123} }">Users page</router-link>
     <router-view></router-view>
   </div>
+
+  <script type="text/x-template" id="user-list">
+    <div>
+      <div class="loading" v-if="loading">Loading now...</div>
+      <div v-if="error" class="error">
+        {{ error }}
+      </div>
+      <div v-for="user in users" :key="user.id">
+        <h2>{{ user.name }}</h2>
+      </div>
+    </div>
+  </script>
 
 </body>
 <script src="route.js"></script>
